@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import './App.css';
+import React, { Component } from "react";
+import "./App.css";
 
 class App extends Component {
   constructor(props) {
@@ -17,14 +17,13 @@ class App extends Component {
     this.weightchange = this.weightchange.bind(this);
     this.change = this.change.bind(this);
     this.calculateBMI = this.calculateBMI.bind(this);
-    }
+  }
 
   heightchange(e) {
     this.setState({ height: e.target.value });
     e.preventDefault();
   }
 
-  
   weightchange(e) {
     this.setState({ weight: e.target.value });
     e.preventDefault();
@@ -39,11 +38,11 @@ class App extends Component {
     if (bmi >= 18.5 && bmi <= 24.99) {
       message = Math.round(bmi) + " You are in a healthy weight range";
     } else if (bmi >= 25 && bmi <= 29.9) {
-      message = "You are overweight";
+      message = Math.round(bmi) + " You are overweight";
     } else if (bmi >= 30) {
-      message = "You are obese";
+      message = Math.round(bmi) + " You are obese";
     } else if (bmi < 18.5) {
-      message = "You are under weight";
+      message = Math.round(bmi) + " You are under weight";
     }
     this.setState({ message: message });
     this.setState({
@@ -98,7 +97,7 @@ class App extends Component {
             value={this.state.weight}
             onChange={this.weightchange}
           />
-         
+
           <label>{this.state.message}</label>
           <label>{this.state.optimalweight}</label>
 
