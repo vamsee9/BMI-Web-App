@@ -11,12 +11,12 @@ class App extends Component {
       bmi: 27,
       message: "",
       optimalweight: "",
-      time: new Date().toLocaleTimeString(),
     };
     this.submitMe = this.submitMe.bind(this);
     this.heightchange = this.heightchange.bind(this);
     this.weightchange = this.weightchange.bind(this);
     this.change = this.change.bind(this);
+    this.calculateBMI = this.calculateBMI.bind(this);
     }
 
   heightchange(e) {
@@ -30,14 +30,14 @@ class App extends Component {
     e.preventDefault();
   }
 
-  /**calculateBMI() {
+  calculateBMI() {
     var heightSquared = ((this.state.height / 100) * this.state.height) / 100;
     var bmi = this.state.weight / heightSquared;
     var low = Math.round(18.5 * heightSquared);
     var high = Math.round(24.99 * heightSquared);
     var message = "";
     if (bmi >= 18.5 && bmi <= 24.99) {
-      message = "You are in a healthy weight range";
+      message = Math.round(bmi) + " You are in a healthy weight range";
     } else if (bmi >= 25 && bmi <= 29.9) {
       message = "You are overweight";
     } else if (bmi >= 30) {
@@ -51,13 +51,12 @@ class App extends Component {
         "Your suggested weight range is between " + low + " - " + high,
     });
     this.setState({ bmi: Math.round(bmi * 100) / 100 });
-  }*/
-
-  submitMe(e) {
-   
   }
 
- 
+  submitMe(e) {
+    e.preventDefault();
+    this.calculateBMI();
+  }
 
   componentDidMount() {
     setInterval(this.ticker, 60000);
